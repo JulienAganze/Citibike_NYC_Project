@@ -1,0 +1,25 @@
+*.csv
+*.csv.gz
+*.parquet
+*.parquet.crc
+
+*.json
+*.json.gz
+
+*.tfstate
+*.tfstate.*
+**.terraform
+**.terraform.lock.*
+**google_credentials.json
+**logs/
+**.env
+**__pycache__/
+
+
+.ipynb_checkpoints/
+
+# Default .gitignore content added by dbt Cloud
+target/
+dbt_packages/
+logs/
+# end dbt Cloud content
