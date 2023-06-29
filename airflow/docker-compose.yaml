@@ -67,11 +67,11 @@ x-airflow-common:
     GCP_PROJECT_ID: 'hidden-moon-391009'
     GCP_GCS_BUCKET: 'citibike_nyc_hidden-moon-391009'
 
-    PG_HOST: "${PG_HOST}"
-    PG_USER: "${PG_USER}" 
-    PG_PASSWORD: "${PG_PASSWORD}" 
-    PG_PORT: "${PG_PORT}"
-    PG_DATABASE: "${PG_DATABASE}" 
+    # PG_HOST: "${PG_HOST}"
+    # PG_USER: "${PG_USER}" 
+    # PG_PASSWORD: "${PG_PASSWORD}" 
+    # PG_PORT: "${PG_PORT}"
+    # PG_DATABASE: "${PG_DATABASE}" 
 
 
 
