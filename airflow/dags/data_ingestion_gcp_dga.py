@@ -20,13 +20,21 @@ path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")
 #dataset_file = "yellow_tripdata_2021-01.csv"
 #dataset_url = f"https://s3.amazonaws.com/nyc-tlc/trip+data/{dataset_file}"
 
+url = "https://s3.amazonaws.com/tripdata/JC-201509-citibike-tripdata.csv.zip"
+
+zip_url_prefix = 'https://s3.amazonaws.com/tripdata'
+zip_url_template = zip_url_prefix + '/JC-{{ execution_date.strftime(\'%Y%m\') }}-citibike-tripdata.csv.zip'
+zip_output_file_template = 'JC-{{ execution_date.strftime(\'%Y%m\') }}-citibike-tripdata.csv.zip'
+
+
+
 url_prefix = 'https://s3.amazonaws.com/nyc-tlc/trip+data'
 url_template = url_prefix + '/yellow_tripdata_{{ execution_date.strftime(\'%Y-%m\') }}.csv'
-output_file_template = 'yellow_{{ execution_date.strftime(\'%Y-%m\') }}.csv'
+output_file_template = 'JC-{{ execution_date.strftime(\'%Y%m\') }}-citibike-tripdata.csv'
 #output_file_template = path_to_local_home + '/output_{{ execution_date.strftime(\'%Y-%m\') }}.csv'
 
 parquet_file = output_file_template.replace('.csv', '.parquet')
-BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", 'trips_data_all')
+BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", 'trips_data')
 
 
 def format_to_parquet(src_file):
@@ -67,18 +75,23 @@ default_args = {
 
 # NOTE: DAG declaration - using a Context Manager (an implicit way)
 with DAG(
-    dag_id="data_ingestion_gcs_dag_homework_q1q2",
+    dag_id="data_ingestion_gcs_dag_citibike",
     schedule_interval="0 6 2 * *",
-    start_date=datetime(2019, 1, 1),
+    start_date=datetime(2023, 4, 4),
     default_args=default_args,
     catchup=True,
     max_active_runs=3,
-    tags=['dtc-de-homework'],
+    tags=['citibike-gcp-data-ingestion'],
 ) as dag:
-
+    
     download_dataset_task = BashOperator(
         task_id="download_dataset_task",
-        bash_command=f"curl -sSLf {url_template} > {path_to_local_home}/{output_file_template}"
+        bash_command=f"curl -sSLf {zip_url_template} > {path_to_local_home}/{zip_output_file_template}"
+    )
+
+    unzip_dataset_task = BashOperator(
+        task_id="unzip_dataset_task",
+        bash_command=f"unzip -o {path_to_local_home}/{zip_output_file_template} -d {path_to_local_home}"# && mv {path_to_local_home}/{output_file_template} {path_to_local_home}/{output_file_template}"
     )
 
     format_to_parquet_task = PythonOperator(
@@ -117,7 +130,7 @@ with DAG(
 
     remove_files_task = BashOperator(
         task_id="remove_files_task",
-        bash_command=f"rm {path_to_local_home}/{output_file_template} {path_to_local_home}/{parquet_file}"
+        bash_command=f"rm {path_to_local_home}/{output_file_template} {path_to_local_home}/{parquet_file} {path_to_local_home}/{zip_output_file_template}"
     )
 
-    download_dataset_task >> format_to_parquet_task >> local_to_gcs_task >> bigquery_external_table_task >> remove_files_task
+    download_dataset_task >> unzip_dataset_task >> format_to_parquet_task >> local_to_gcs_task >> bigquery_external_table_task >> remove_files_task

@@ -5,12 +5,18 @@ FROM apache/airflow:2.2.3
 ENV AIRFLOW_HOME=/opt/airflow
 
 USER root
-RUN apt-get update -qq && apt-get install vim -qqq
+#RUN apt-get update -qq && apt-get install vim -
+RUN apt-get update -qq && apt-get install -y vim
+
+# Install unzip utility
+RUN apt-get install -y unzip
+
 # git gcc g++ -qqq
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir pandas sqlalchemy psycopg2-binary
+
 
 
 # Ref: https://airflow.apache.org/docs/docker-stack/recipes.html
