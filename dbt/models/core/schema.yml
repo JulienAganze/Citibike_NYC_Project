@@ -6,7 +6,7 @@ models:
         Trip made by bikes.
         
       columns:
-          - name: rideid
+          - name: ride_id
             description: Primary key for this table, generated with a concatenation of vendorid+pickup_datetime
             # tests:
             #     - unique:
