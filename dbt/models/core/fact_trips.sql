@@ -10,7 +10,7 @@ select
     end_station_name,
     end_station_id,
     start_lat,
-    start_long,
+    start_lng,
     end_lat,
     end_lng,
     member_casual as member_type
