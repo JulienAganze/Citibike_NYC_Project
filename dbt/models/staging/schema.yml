@@ -10,7 +10,7 @@ sources:
       
 
 models:
-    - name: citibike_tripdata
+    - name: stg_tripdata
       description: >
         Trip made by bikes.
         
