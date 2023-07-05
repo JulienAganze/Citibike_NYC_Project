@@ -77,7 +77,7 @@ default_args = {
 with DAG(
     dag_id="data_ingestion_gcs_dag_citibike",
     schedule_interval="0 6 2 * *",
-    start_date=datetime(2023, 4, 4),
+    start_date=datetime(2022, 11, 1),
     default_args=default_args,
     catchup=True,
     max_active_runs=3,
@@ -123,10 +123,15 @@ with DAG(
             },
             "externalDataConfiguration": {
                 "sourceFormat": "PARQUET",
-                "sourceUris": [f"gs://{BUCKET}/raw/{parquet_file}"],
+                "sourceUris": [f"gs://{BUCKET}/raw/JC-*"],
             },
         },
     )
+
+    
+
+
+
 
     remove_files_task = BashOperator(
         task_id="remove_files_task",
