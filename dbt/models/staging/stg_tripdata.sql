@@ -13,15 +13,15 @@ select
     rideable_type,
     cast(started_at as timestamp) as start_datetime,
     cast(ended_at as timestamp) as end_datetime,
-    start_station_name,
-    start_station_id,
-    end_station_name,
-    end_station_id,
-    start_lat,
-    start_lng,
-    end_lat,
-    end_lng,
-    member_casual
+    cast(start_station_name as VARCHAR),
+    cast(start_station_id as VARCHAR),
+    cast(end_station_name as VARCHAR),
+    cast(end_station_id as VARCHAR),
+    cast(start_lat as VARCHAR),
+    cast(start_lng as VARCHAR),
+    cast(end_lat as VARCHAR),
+    cast(end_lng as VARCHAR),
+    cast(member_casual as VARCHAR)
 
 from tripdata
 where rn = 1 
