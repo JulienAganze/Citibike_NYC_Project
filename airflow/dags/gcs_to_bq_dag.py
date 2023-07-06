@@ -4,6 +4,9 @@ import logging
 from airflow import DAG
 from airflow.utils.dates import days_ago
 
+from datetime import datetime
+
+
 from airflow.providers.google.cloud.operators.bigquery import BigQueryCreateExternalTableOperator, BigQueryInsertJobOperator
 from airflow.providers.google.cloud.transfers.gcs_to_gcs import GCSToGCSOperator
 from google.cloud import bigquery
@@ -30,6 +33,7 @@ default_args = {
 with DAG(
     dag_id="gcs_2_bq_dag",
     schedule_interval="@daily",
+    start_date=datetime(2023, 7, 4),
     default_args=default_args,
     catchup=False,
     max_active_runs=1,
@@ -60,12 +64,13 @@ with DAG(
                 "externalDataConfiguration": {
                     "autodetect": "True",
                     "sourceFormat": "PARQUET",
-                    "sourceUris": [f"gs://{BUCKET}/{taxi_type}/*"],
+                    "sourceUris": [f"gs://{BUCKET}/raw/JC-*"],
                 },
             },
         )
 
     
+
 
         CREATE_BQ_TBL_QUERY = (
             f"CREATE OR REPLACE TABLE {BIGQUERY_DATASET}.{taxi_type}_{DATASET} \
