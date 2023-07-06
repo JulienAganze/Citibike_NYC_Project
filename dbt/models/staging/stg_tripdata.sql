@@ -17,10 +17,10 @@ select
     start_station_id,
     end_station_name,
     end_station_id,
-    start_lat,
-    start_lng,
-    end_lat,
-    end_lng,
+    cast(start_lat as numeric) as start_lat,
+    cast(start_lng as numeric) as start_lng,
+    cast(end_lat as numeric) as end_lat,
+    cast(end_lng as numeric) as end_lng,
     member_casual
 
 from tripdata
