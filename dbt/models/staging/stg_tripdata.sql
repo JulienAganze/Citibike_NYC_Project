@@ -21,7 +21,8 @@ select
     cast(start_lng as numeric) as start_lng,
     cast(end_lat as numeric) as end_lat,
     cast(end_lng as numeric) as end_lng,
-    member_casual
+    member_casual,
+    
 
 from tripdata
 where rn = 1 
