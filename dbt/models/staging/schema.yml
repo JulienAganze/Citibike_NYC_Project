@@ -6,7 +6,7 @@ sources:
     schema: trips_data
 
     tables:
-      - name: external_table
+      - name: citibike_tripdata
       
 
 models:
