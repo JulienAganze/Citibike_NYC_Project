@@ -22,6 +22,8 @@ select
     cast(end_lat as numeric) as end_lat,
     cast(end_lng as numeric) as end_lng,
     member_casual,
+    CONCAT(start_lat, ',', start_lng) AS start_LatLong,
+    CONCAT(end_lat, ',', end_lng) AS end_LatLong
     
 
 from tripdata
