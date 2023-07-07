@@ -5,7 +5,7 @@ with tripdata as
   select *,
     row_number() over(partition by started_at) as rn
   from {{ source('staging','citibike_tripdata') }}
-  --where VendorID is not null 
+  WHERE end_station_id !="" 
 )
 
 select
