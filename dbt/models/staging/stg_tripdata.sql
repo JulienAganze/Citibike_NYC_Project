@@ -23,7 +23,14 @@ select
     cast(end_lng as numeric) as end_lng,
     member_casual,
     CONCAT(start_lat, ',', start_lng) AS start_Lat_Long,
-    CONCAT(end_lat, ',', end_lng) AS end_Lat_Long
+    CONCAT(end_lat, ',', end_lng) AS end_Lat_Long,
+    (6371 * ACOS(
+        COS(SAFE_DIVIDE(start_lat * ACOS(-1), 180)) *
+        COS(SAFE_DIVIDE(end_lat * ACOS(-1), 180)) *
+        COS(SAFE_DIVIDE(end_lng - start_lng * ACOS(-1), 180)) +
+        SIN(SAFE_DIVIDE(start_lat * ACOS(-1), 180)) *
+        SIN(SAFE_DIVIDE(end_lat * ACOS(-1), 180))
+    )) AS distance_traveled
     
 
 from tripdata
