@@ -31,7 +31,7 @@ The following steps were performed to analyze the air quality data for the 100 P
 ## What technologies are being used?
 - Cloud: [Google Cloud](https://cloud.google.com)
 - Infrastructure: [Terraform](https://www.terraform.io/)
-- Orchestration: [Airflow]([https://www.prefect.io/](https://airflow.apache.org/))
+- Orchestration: [Airflow](https://airflow.apache.org/)
 - Data lake: [Google Cloud Storage](https://cloud.google.com/storage)
 - Data transformation: [DBT](https://www.getdbt.com/)
 - Data warehouse: [BigQuery](https://cloud.google.com/bigquery)
