@@ -14,7 +14,7 @@
 
 ## Main objective
 
-The following steps were performed to analyze the air quality data for the 100 Polish cities:
+
 
 
 
@@ -40,7 +40,7 @@ The following steps were performed to analyze the air quality data for the 100 P
 
 ### Repository organization
 - \dbt: dbt files (dbt_project.yml, models, etc.).
-- \airflow: prefect flows files (etl_tasks.py, history_parameterized_flow.py, current_parameterized_flow.py, docker_deployment.py).  
+- \airflow:  flows files.  
 #- \images: pictures.  
 - \terraform: terraform files for the definition of the infrastructure to deploy.  
 - \README.md: this document.  
