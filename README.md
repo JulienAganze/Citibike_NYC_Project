@@ -56,19 +56,8 @@ Use Terraform to create a bucket GCS and dataset in BQ
 
 **Transformations using dbt:**  
   
-  Use dbt cloud to perform joins and aggregations on BQ.  
-  - Staging (materialized=view):  
-    - airpollution and cities: Create staged model from airpollution and cities tables in Big Query.  
-    - The output will be `stg_air_pollution` and `stg_cities` models.  
-       
-  - Core (materialized=table):
-    - `fact_pollution` materialized model by joining `stg_air_pollution` with `stg_cities` models. 
-    - In addition, a `agg_pollution_by_day` model has been created. This model averages the daily observations and determines daily pollution quality for every city. 
-  - Job:
-    - For the convenient creation of the production dataset, a job `dbt build` will be created.
-    - This job can be run manually (or scheduled) from dbt cloud.
+ 
 
-    **Dashboard:**  
   
   Connect Google Data Studio to BQ dataset and design dashboard  
 
@@ -76,33 +65,15 @@ Use Terraform to create a bucket GCS and dataset in BQ
 
 **Dashboard**
 
-<p align="left">
-<img src="images/example_dashboard.JPG" width="600">
-</p>
-
-You can check my dashboard here:
-https://lookerstudio.google.com/reporting/34c9db2f-e5e6-4fae-9a89-c89c0f134c3e
 
 ## Setup and running
 
-Terraform and Prefect will run in a VM in Google Cloud. Prefect will run as docker container (It is possible to just install requirements in conda environment for example).
-For data transformation:  
-Dbt cloud will be used to perform data transformation pipeline.  
-  
-Your gcp account will be used and, unless you have google's welcome credit, it will have some cost.
-Your dbt cloud account will be used. Developer account is free.
 
-If you wish to install the required tools in your own machine instead of in the VM, the instructions in `setup_gcp.md` will be a good starting point.
 
 ### Setup
 
-Note: This setup is not mean to be for production environment. More specific service account roles should be implemented as well as changing default passwords (e.g. `sudo passwd` in your VM to create the root password since VMs in GCE does not provide a password for root user).
 
-Follow the following steps in the same order:
-1. Google Cloud Platform account and project:  
-  Follow the instructions in `setup_gcp.md`  
-2. Virtual Machine in Google Cloud Compute Engine:  
-  Follow the instructions in `setup_vm.md`
+
 
 ### Run pipelines
 1. Setup your Google Cloud environment
@@ -126,23 +97,8 @@ pip install -r requirements.txt
 `terraform plan -var="project=<your-gcp-project-id>"`
 `terraform apply -var="project=<your-gcp-project-id>"`
 
-4. API_KEY
-- Export your API key in the following format:
-```bash
-export API_KEY=<insert your key here>
-```
 
 5. Setup your orchestration
 
-- Create the [prefect blocks](https://docs.prefect.io/concepts/blocks/) via the cloud UI or adjust the variables in `/blocks/make_gcp_blocks.py` and `/blocks/make_docker_block.py` then run
-```bash
-python blocks/make_gcp_blocks.py
-python blocks/make_docker_block.py
-```
-- To execute the flow, run the following commands in two different CL terminals
-```bash
-prefect agent start -q 'default'
-```
-```bash
-python flows/history_parameterized_flow.py
+
 ```
