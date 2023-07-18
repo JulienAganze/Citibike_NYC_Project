@@ -41,41 +41,18 @@ The following steps were performed to analyze the air quality data for the 100 P
 ### Repository organization
 - \dbt: dbt files (dbt_project.yml, models, etc.).
 - \airflow: prefect flows files (etl_tasks.py, history_parameterized_flow.py, current_parameterized_flow.py, docker_deployment.py).  
-- \images: pictures.  
+#- \images: pictures.  
 - \terraform: terraform files for the definition of the infrastructure to deploy.  
 - \README.md: this document.  
 - \setup_gcp.md: instructions to configure cgp account.  
-- \setup_vm.md: instructions to setup the VM in GCP.  
+  
 
 **Infrastructure as code:**  
 
 Use Terraform to create a bucket GCS and dataset in BQ  
-- airpollution bucket to store parquet files.
-- raw dataset for the ingestion into BigQuery.
-- development dataset for dbt cloud development environment.
-- production dataset for dbt cloud production environment. 
 
   **Orchestration:**  
-To use Prefect to retrieve data from the Weather API (https://openweathermap.org/api) and load it into CGS before finally inserting it into a regular BigQuery table, follow the steps below:
-- Create a free account on https://home.openweathermap.org/users/sign_up and generate your API key.
-- Export your API key in the following format:
-```bash
-export API_KEY=<insert your key here>
-```
-This key will be used by the script to authenticate your requests to the Weather API.
-- Sign-up for the prefect cloud and create a workspace [here](https://app.prefect.cloud/auth/login)
-- Create the [prefect blocks](https://docs.prefect.io/concepts/blocks/) via the cloud UI or adjust the variables in `/blocks/make_gcp_blocks.py` and `/blocks/make_docker_block.py` then run
-```bash
-python blocks/make_gcp_blocks.py
-python blocks/make_docker_block.py
-```
-- To execute the flow, run the following commands in two different CL terminals
-```bash
-prefect agent start -q 'default'
-```
-```bash
-python flows/history_parameterized_flow.py
-```
+
 
 **Transformations using dbt:**  
   
