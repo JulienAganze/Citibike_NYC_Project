@@ -1,24 +1,39 @@
 # NYC Bike project
 
 ## Objective
-
+The aim of this project was to come up with a complete ETL pipeline, meaning including data extraction, transformation as well as ingestion. And the data we worked with was related to citibike which is a company having a public bike shaing system in New York City in USA. So the aim was to design an entire data pipeline, with data for each being downloaded from citibike website([data](https://s3.amazonaws.com/tripdata/index.html)), then uploaded into GCS before some transformation being applied to it usin DBT and finally some usefull visualization being obtained using Google Locker Studio.
 
 
 ## Architecture
 
 
 ## Problem statement
-
+The work was devoted to answering the following questionsw: Where do Citi bikers ride? When do they ride? How far do they go? Which stations are most popuplar? What days of the week are most popular?
 
 
 
 ## Main objective
+The following steps were taken to complete our work:
 
 
 
 
 
 ## Dataset description
+The dataset has the following columns:
+- ride_id			
+- rideable_type					
+- started_at					
+- ended_at					
+- start_station_name					
+- start_station_id					
+- end_station_name					
+- end_station_id						
+- start_lat					
+- start_lng					
+- end_lat					
+- end_lng					
+- member_casual					
 
 
 
