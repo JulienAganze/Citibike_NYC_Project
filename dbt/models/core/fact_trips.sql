@@ -17,8 +17,12 @@ select
     end_lat,
     end_lng,
     member_casual as member_type,
-    CONCAT(start_lat, ',', start_lng) AS start_LatLong,
-    CONCAT(end_lat, ',', end_lng) AS end_LatLong
+    start_Lat_Long,
+    end_Lat_Long,
+    distance_traveled_km
+
+    --CONCAT(start_lat, ',', start_lng) AS start_LatLong,
+    --CONCAT(end_lat, ',', end_lng) AS end_LatLong
 
 from {{ ref('stg_tripdata') }}
 

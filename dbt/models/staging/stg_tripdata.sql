@@ -5,7 +5,7 @@ with tripdata as
   select *,
     row_number() over(partition by started_at) as rn
   from {{ source('staging','citibike_tripdata') }}
-  --where VendorID is not null 
+  WHERE end_station_id !="" 
 )
 
 select
@@ -22,6 +22,17 @@ select
     cast(end_lat as numeric) as end_lat,
     cast(end_lng as numeric) as end_lng,
     member_casual,
+    CONCAT(start_lat, ',', start_lng) AS start_Lat_Long,
+    CONCAT(end_lat, ',', end_lng) AS end_Lat_Long,
+    ROUND(
+        (6371 * ACOS(
+            COS(SAFE_DIVIDE(start_lat * ACOS(-1), 180)) *
+            COS(SAFE_DIVIDE(end_lat * ACOS(-1), 180)) *
+            COS(SAFE_DIVIDE(end_lng - start_lng * ACOS(-1), 180)) +
+            SIN(SAFE_DIVIDE(start_lat * ACOS(-1), 180)) *
+            SIN(SAFE_DIVIDE(end_lat * ACOS(-1), 180))
+        )), 2
+    ) AS distance_traveled_km
     
 
 from tripdata
