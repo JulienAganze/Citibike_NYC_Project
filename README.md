@@ -11,32 +11,21 @@ The aim of this project was to come up with a complete ETL pipeline, meaning inc
 The work was devoted to answering the following questionsw: Where do Citi bikers ride? When do they ride? How far do they go? Which stations are most popuplar? What days of the week are most popular?
 
 
-
-## Main objective
-The following steps were taken to complete our work:
-
-
-
-
-
 ## Dataset description
 The dataset has the following columns:
-- ride_id			
-- rideable_type					
-- started_at					
-- ended_at					
-- start_station_name					
-- start_station_id					
-- end_station_name					
-- end_station_id						
-- start_lat					
-- start_lng					
-- end_lat					
-- end_lng					
-- member_casual					
-
-
-
+- ride_id: contains information related to a unique identifier associated with each ride			
+- rideable_type: has information related to types of bikes being used for the ride					
+- started_at: start time of the ride					
+- ended_at: ride end time					
+- start_station_name: start station name					
+- start_station_id: id associated with each station					
+- end_station_name: end station name					
+- end_station_id: id associated with ecah stsation						
+- start_lat: latitude associated with the trip starting position					
+- start_lng: longitude associated with the trip starting position					
+- end_lat: latitude associated with the trip ending position					
+- end_lng: longitude associated with the trip ending position					
+- member_casual: type of users using the bikes					
 
 
 
