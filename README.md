@@ -47,13 +47,17 @@ The dataset has the following columns:
 #- \images: pictures.
 - \dbt: dbt files (dbt_project.yml, models, etc.).
 - \terraform: terraform files for the definition of the infrastructure to deploy.  
-- \README.md: this document.  
-- \setup_gcp.md: instructions to configure cgp account.  
+- \GCP_setup.md: instructions to configure cgp account.
+- \README.md: this document. 
   
 
 **Infrastructure as code:**  
 
 Use Terraform to create a bucket GCS and dataset in BQ  
+- citibike_nyc bucket to store parquet files.
+- raw dataset for the ingestion into BigQuery.
+- development dataset for dbt cloud development environment.
+- production dataset for dbt cloud production environment.
 
   **Orchestration:**  
 
