@@ -1,5 +1,8 @@
 {{ config(materialized='table') }}
 
+
+
+
 select
     ride_id,
     rideable_type,
@@ -13,6 +16,10 @@ select
     start_lng,
     end_lat,
     end_lng,
-    member_casual as member_type
+    member_casual as member_type,
+    CONCAT(start_lat, ',', start_lng) AS start_LatLong,
+    CONCAT(end_lat, ',', end_lng) AS end_LatLong
 
 from {{ ref('stg_tripdata') }}
+
+

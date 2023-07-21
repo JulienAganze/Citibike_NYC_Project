@@ -4,7 +4,7 @@ with tripdata as
 (
   select *,
     row_number() over(partition by started_at) as rn
-  from {{ source('staging','external_table') }}
+  from {{ source('staging','citibike_tripdata') }}
   --where VendorID is not null 
 )
 
@@ -17,11 +17,12 @@ select
     start_station_id,
     end_station_name,
     end_station_id,
-    start_lat,
-    start_lng,
-    end_lat,
-    end_lng,
-    member_casual
+    cast(start_lat as numeric) as start_lat,
+    cast(start_lng as numeric) as start_lng,
+    cast(end_lat as numeric) as end_lat,
+    cast(end_lng as numeric) as end_lng,
+    member_casual,
+    
 
 from tripdata
 where rn = 1 
