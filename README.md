@@ -43,9 +43,9 @@ The dataset has the following columns:
 
 
 ### Repository organization
-- \dbt: dbt files (dbt_project.yml, models, etc.).
 - \airflow:  flows files.  
-#- \images: pictures.  
+#- \images: pictures.
+- \dbt: dbt files (dbt_project.yml, models, etc.).
 - \terraform: terraform files for the definition of the infrastructure to deploy.  
 - \README.md: this document.  
 - \setup_gcp.md: instructions to configure cgp account.  
