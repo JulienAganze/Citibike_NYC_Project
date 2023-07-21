@@ -72,7 +72,11 @@ Use Terraform to create a bucket GCS and dataset in BQ
   ## Results
 
 **Dashboard**
-
+<p align="left">
+<img src="images/first_page.png" width="800">
+</p>
+You can check my dashboard here:
+https://lookerstudio.google.com/s/kWY76F1WBzY
 
 ## Setup and running
 
