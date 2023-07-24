@@ -91,13 +91,14 @@ You can check my dashboard here:
 https://lookerstudio.google.com/s/kWY76F1WBzY
 
 ## Setup and running
+Airflow will run as docker container.
+For data transformation:  
+Dbt cloud will be used to perform data transformation pipeline.  
+  
+Your gcp account will be used and, unless you have google's welcome credit, it will have some cost.
+Your dbt cloud account will be used. Developer account is free.
 
-
-
-### Setup
-
-
-
+If you wish to install the required tools in your own machine the instructions in `setup_gcp.md` will be a good starting point.
 
 ### Run pipelines
 1. Setup your Google Cloud environment
@@ -122,7 +123,6 @@ pip install -r requirements.txt
 `terraform apply -var="project=<your-gcp-project-id>"`
 
 
-5. Setup your orchestration
 
 
 ```
