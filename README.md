@@ -63,7 +63,19 @@ Use Terraform to create a bucket GCS and dataset in BQ
 
 
 **Transformations using dbt:**  
-  
+ Use dbt cloud to perform joins and aggregations on BQ.  
+  - Staging (materialized=view):  
+    - New Yoek City rides information: Create staged model from citibike_tripdata table in Big Query.  
+    - The output will be `stg_tripdata` model with the distance travelled being added as well as the latitude and longitude columns being concatenated.  
+       
+  - Core (materialized=table):
+    - `fact_trips` materialized model by `stg_tripdata` model. 
+   
+  - Job:
+    - For the convenient creation of the production dataset, a job `dbt build` will be created.
+    - This job can be run manually (or scheduled) from dbt cloud.
+
+    **Dashboard:**    
  
 
   
