@@ -5,8 +5,9 @@ The aim of this project was to come up with a complete ETL pipeline, meaning inc
 
 
 ## Architecture
-![Air Pollution pipeline](https://user-images.githubusercontent.com/26925238/225983954-96b5e1e3-ef79-4a7b-aa37-840c2eee4020.jpg)
-
+<p align="left">
+<img src="images/nyc.png" width="1000">
+</p>
 
 ## Problem statement
 The work was devoted to answering the following questionsw: Where do Citi bikers ride? When do they ride? How far do they go? Which stations are most popuplar? What days of the week are most popular?
