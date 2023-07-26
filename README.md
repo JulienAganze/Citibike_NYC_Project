@@ -5,6 +5,7 @@ The aim of this project was to come up with a complete ETL pipeline, meaning inc
 
 
 ## Architecture
+![Air Pollution pipeline](https://user-images.githubusercontent.com/26925238/225983954-96b5e1e3-ef79-4a7b-aa37-840c2eee4020.jpg)
 
 
 ## Problem statement
@@ -88,7 +89,7 @@ Use Terraform to create a bucket GCS and dataset in BQ
 <img src="images/first_page.png" width="800">
 </p>
 You can check my dashboard here:
-https://lookerstudio.google.com/s/kWY76F1WBzY
+https://lookerstudio.google.com/s/iCKaAhBrFg0
 
 ## Setup and running
 Airflow will run as docker container.
